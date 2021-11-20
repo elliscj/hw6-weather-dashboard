@@ -1,3 +1,21 @@
+body {
+  background-color: rgb(41, 126, 126);
+  color: aliceblue;
+}
+
 .card {
   height: 200px;
+  background-color: rgb(43, 126, 98);
+}
+
+header {
+  text-align: center;
+  background-color: rgb(70, 70, 70);
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.searchBtn {
+  background-color: aliceblue;
 }
