@@ -4,13 +4,13 @@ body {
 }
 
 .card {
-  height: 200px;
-  background-color: rgb(43, 126, 98);
+  height: 300px;
+  background-color: rgb(86, 145, 125);
 }
 
 header {
   text-align: center;
-  background-color: rgb(70, 70, 70);
+  background-color: rgb(206, 206, 206);
   margin-bottom: 20px;
   padding-bottom: 15px;
   padding-top: 15px;
@@ -18,4 +18,8 @@ header {
 
 .searchBtn {
   background-color: aliceblue;
+}
+
+.history {
+  text-align: center;
 }
