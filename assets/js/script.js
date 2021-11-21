@@ -24,7 +24,7 @@ function getGeo() {
   searchCity = document.getElementById("search-input").value;
   apiCity = searchCity.trim();
   geoUrl =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     apiCity +
     "&limit=1&appid=" +
     apiKey;
