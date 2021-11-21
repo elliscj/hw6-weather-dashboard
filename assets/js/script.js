@@ -12,7 +12,7 @@ var apiCity = "";
 var apiKey = "e21bef52f4595a9117145774881d361c";
 
 var geoUrl =
-  "http://api.openweathermap.org/geo/1.0/direct?q=" +
+  "https://api.openweathermap.org/geo/1.0/direct?q=" +
   apiCity +
   "&limit=1&appid=" +
   apiKey;
@@ -68,7 +68,7 @@ function getWeather(lat, lon) {
 
 function renderDisplay(data) {
   var todayIcon = data.current.weather[0].icon;
-  var iconSrc = "http://openweathermap.org/img/wn/" + todayIcon + ".png";
+  var iconSrc = "https://openweathermap.org/img/wn/" + todayIcon + ".png";
   var todayTemp = data.current.temp;
   var todayWind = data.current.wind_speed;
   var todayHumid = data.current.humidity;
@@ -105,7 +105,7 @@ function renderDisplay(data) {
     winds[i].textContent = "Wind: " + data.daily[i + 1].wind_speed + " mph";
     humids[i].textContent = "Humidity: " + data.daily[i + 1].humidity + "%";
     icons[i].src =
-      "http://openweathermap.org/img/wn/" +
+      "https://openweathermap.org/img/wn/" +
       data.daily[i + 1].weather[0].icon +
       ".png";
     dates[i].textContent = moment.unix(data.daily[i + 1].dt).format("MMM Do");
