@@ -23,3 +23,19 @@ header {
 .history {
   text-align: center;
 }
+
+.favorable {
+  color: rgb(38, 48, 123);
+}
+
+.moderate {
+  color: rgb(205, 196, 103);
+}
+
+.high {
+  color: rgb(238, 113, 35);
+}
+
+.severe {
+  color: rgb(177, 23, 23);
+}

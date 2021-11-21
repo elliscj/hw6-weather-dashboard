@@ -16,7 +16,7 @@ var geoUrl =
   apiCity +
   "&limit=1&appid=" +
   apiKey;
-var currentDay = moment().format("MMM Do YY");
+var currentDay = moment.unix(1637690400).format("MMM Do");
 
 console.log(currentDay);
 
@@ -29,10 +29,9 @@ function getGeo() {
     "&limit=1&appid=" +
     apiKey;
 
-  console.log("hi");
-  console.log(searchCity);
+  // console.log(searchCity);
   // console.log(futureUrl);
-  console.log(apiCity);
+  // console.log(apiCity);
   fetch(geoUrl)
     .then(function (response) {
       return response.json();
@@ -85,22 +84,31 @@ function renderDisplay(data) {
   todayHumidEl.textContent = "Humidity: " + todayHumid + "%";
   var todayUvEl = document.querySelector(".uv-1");
   todayUvEl.textContent = "UV Index: " + todayUv;
+  if (todayUv < 3) {
+    todayUvEl.classList.add("favorable");
+  } else if (todayUv < 6) {
+    todayUvEl.classList.add("moderate");
+  } else if (todayUv < 8) {
+    todayUvEl.classList.add("high");
+  } else todayUvEl.classList.add("severe");
 
   var tempsH = document.querySelectorAll(".temp-h");
   var tempsL = document.querySelectorAll(".temp-l");
   var winds = document.querySelectorAll(".wind");
   var humids = document.querySelectorAll(".humid");
   var icons = document.querySelectorAll(".icon");
+  var dates = document.querySelectorAll(".date");
 
   for (let i = 0; i < 5; i++) {
-    tempsH[i].textContent = "High: " + data.daily[i].temp.max + " \u2109";
-    tempsL[i].textContent = "Low: " + data.daily[i].temp.min + " \u2109";
-    winds[i].textContent = "Wind: " + data.daily[i].wind_speed + " mph";
-    humids[i].textContent = "Humidity: " + data.daily[i].humidity + "%";
+    tempsH[i].textContent = "High: " + data.daily[i + 1].temp.max + " \u2109";
+    tempsL[i].textContent = "Low: " + data.daily[i + 1].temp.min + " \u2109";
+    winds[i].textContent = "Wind: " + data.daily[i + 1].wind_speed + " mph";
+    humids[i].textContent = "Humidity: " + data.daily[i + 1].humidity + "%";
     icons[i].src =
       "http://openweathermap.org/img/wn/" +
-      data.daily[i].weather[0].icon +
+      data.daily[i + 1].weather[0].icon +
       ".png";
+    dates[i].textContent = moment.unix(data.daily[i + 1].dt).format("MMM Do");
   }
 }
 
