@@ -44,6 +44,7 @@ function getGeo() {
       var lon = data[0].lon;
       console.log(lat, lon);
       getWeather(lat, lon);
+      document.getElementById("city").textContent = data[0].name;
     });
 }
 

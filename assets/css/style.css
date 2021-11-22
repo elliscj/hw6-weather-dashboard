@@ -24,6 +24,10 @@ header {
   text-align: center;
 }
 
+#city {
+  text-align: center;
+}
+
 .favorable {
   color: rgb(38, 48, 123);
 }
