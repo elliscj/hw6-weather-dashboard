@@ -24,6 +24,10 @@ header {
   text-align: center;
 }
 
+#search-history {
+  display: inline;
+}
+
 #city {
   text-align: center;
 }

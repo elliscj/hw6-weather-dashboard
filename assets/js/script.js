@@ -44,11 +44,11 @@ function getGeo() {
       var lon = data[0].lon;
       console.log(lat, lon);
       getWeather(lat, lon);
+      var searchName = data[0].name;
+      document.getElementById("city").textContent = searchName;
 
       //localStorage//
       var allSearches = JSON.parse(localStorage.getItem("searches")) || [];
-      var searchName = data[0].name;
-      document.getElementById("city").textContent = searchName;
 
       var searchStorage = searchName;
       allSearches.push(searchStorage);
@@ -56,14 +56,14 @@ function getGeo() {
       console.log(searchStorage);
       console.log(allSearches);
       //search history .show
-      var template = "";
-      for (let i = 0; i > searchStorage.length; i++) {
-        template += `<li> ${allSearches[i]} <li>`;
+      var searchHistory = document.getElementById("search-history");
+
+      for (let i = 0; i < allSearches.length; i++) {
+        var createLi = document.createElement("li");
+        createLi.textContent = allSearches[i];
+        searchHistory.appendChild(createLi);
+        console.log(allSearches[i]);
       }
-
-      document.getElementById("search-history").append(template);
-
-      console.log("hi");
     });
 }
 
