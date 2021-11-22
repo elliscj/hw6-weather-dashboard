@@ -44,7 +44,26 @@ function getGeo() {
       var lon = data[0].lon;
       console.log(lat, lon);
       getWeather(lat, lon);
-      document.getElementById("city").textContent = data[0].name;
+
+      //localStorage//
+      var allSearches = JSON.parse(localStorage.getItem("searches")) || [];
+      var searchName = data[0].name;
+      document.getElementById("city").textContent = searchName;
+
+      var searchStorage = searchName;
+      allSearches.push(searchStorage);
+      localStorage.setItem("searches", JSON.stringify(allSearches));
+      console.log(searchStorage);
+      console.log(allSearches);
+      //search history .show
+      var template = "";
+      for (let i = 0; i > searchStorage.length; i++) {
+        template += `<li> ${allSearches[i]} <li>`;
+      }
+
+      document.getElementById("search-history").append(template);
+
+      console.log("hi");
     });
 }
 
