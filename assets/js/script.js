@@ -79,6 +79,7 @@ function getGeo(city) {
       console.log(allSearches);
       //search history .show
       renderStorage();
+      document.getElementById("search-input").value = "";
     });
 }
 
