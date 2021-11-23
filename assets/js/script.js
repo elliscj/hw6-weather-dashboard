@@ -8,8 +8,23 @@
 
 var searchCity = "";
 var apiCity = "";
-
+var allSearches;
 var apiKey = "e21bef52f4595a9117145774881d361c";
+var searchHistory = document.getElementById("search-history");
+
+//localStorage//
+function renderStorage() {
+  searchHistory.innerHTML = "";
+  allSearches = JSON.parse(localStorage.getItem("searches")) || [];
+  for (let i = 0; i < allSearches.length; i++) {
+    var createLi = document.createElement("li");
+    createLi.textContent = allSearches[i];
+    createLi.classList.add("btn", "btn-secondary", "m-2");
+    searchHistory.appendChild(createLi);
+    console.log(allSearches[i]);
+  }
+}
+renderStorage();
 
 var geoUrl =
   "https://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -20,8 +35,14 @@ var currentDay = moment.unix(1637690400).format("MMM Do");
 
 console.log(currentDay);
 
-function getGeo() {
+function getGeo(city) {
   searchCity = document.getElementById("search-input").value;
+  console.log(typeof city);
+  if (typeof city === "string") {
+    searchCity = city;
+  }
+
+  console.log(searchCity);
   apiCity = searchCity.trim();
   geoUrl =
     "https://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -47,23 +68,17 @@ function getGeo() {
       var searchName = data[0].name;
       document.getElementById("city").textContent = searchName;
 
-      //localStorage//
-      var allSearches = JSON.parse(localStorage.getItem("searches")) || [];
-
+      //localStorage
       var searchStorage = searchName;
-      allSearches.push(searchStorage);
-      localStorage.setItem("searches", JSON.stringify(allSearches));
+      if (!allSearches.includes(searchStorage)) {
+        allSearches.push(searchStorage);
+        localStorage.setItem("searches", JSON.stringify(allSearches));
+      }
+
       console.log(searchStorage);
       console.log(allSearches);
       //search history .show
-      var searchHistory = document.getElementById("search-history");
-
-      for (let i = 0; i < allSearches.length; i++) {
-        var createLi = document.createElement("li");
-        createLi.textContent = allSearches[i];
-        searchHistory.appendChild(createLi);
-        console.log(allSearches[i]);
-      }
+      renderStorage();
     });
 }
 
@@ -145,3 +160,8 @@ document
     }
   });
 // console.log(lat, lon);
+
+searchHistory.addEventListener("click", function (event) {
+  var city = event.target.innerText;
+  getGeo(city);
+});
