@@ -6,7 +6,9 @@ Everyone likes to have accurate weather right at their fingertips. With this app
 
 ## Features
 
-// List api's and how they are used to get all the weather data //
+For this project I used 2 different API's from the same company Open Weather Map. The first one, Geocoding API takes the users input of a city and returns latitude and longitude coordinates which are then passed into the One Call Weather API which returns current and future weather information. I used the current weather information for the 'Today' box in the forcast and the future forcast data to display data in each of the following boxes. Moment js was also used to convert the unix returned in the API data to determine the actual date of the forcasted data.
+
+After you search for a city, that city is saved under search history to easily return to that cities weather forcast!
 
 ## Screenshot
 
